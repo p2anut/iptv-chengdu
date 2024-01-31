@@ -128,7 +128,7 @@ def generateM3U8(file):
 
             if "ct" in c:
                 line = '#EXTINF:-1 tvg-logo="%s" tvg-id="%s" tvg-name="%s" group-title="%s",%s\n' % (c["icon"], c["id"], c["name"], k, c["name"])
-                line2 = homeLanAddress + '/rtp/' + c["address"] + "\n"
+                line2 = 'rtp://' + c["address"] + "\n"
             else:
                 line = '#EXTINF:-1 tvg-id="%s" tvg-name="%s" group-title="%s",%s\n' % (getID(), c["name"], k, c["name"])
                 line2 = c["address"] + "\n"
@@ -139,26 +139,26 @@ def generateM3U8(file):
     file.close()
     print("Build m3u8 success.")
 
-def generateTXT(file):
-    file=open(file, "w")
-    for k, v in m.items():
-        line = '%s,#genre#\n' % (k)
-        file.write(line)
+# def generateTXT(file):
+#     file=open(file, "w")
+#     for k, v in m.items():
+#         line = '%s,#genre#\n' % (k)
+#         file.write(line)
 
-        for c in v:
-            line = '%s,%s/rtp/%s\n' % (c["name"], homeLanAddress, c["address"])
-            if "ct" not in c:
-                line = '%s,%s\n' % (c["name"], c["address"])
+#         for c in v:
+#             line = '%s,%s/rtp/%s\n' % (c["name"], homeLanAddress, c["address"])
+#             if "ct" not in c:
+#                 line = '%s,%s\n' % (c["name"], c["address"])
 
-            file.write(line)
+#             file.write(line)
 
-    file.close()
-    print("Build txt success.")
+#     file.close()
+#     print("Build txt success.")
 
 
 def generateHome():
     generateM3U8("./home/iptv.m3u8")
-    generateTXT("./home/iptv.txt")
+    # generateTXT("./home/iptv.txt")
 
 #exit(0)
 
